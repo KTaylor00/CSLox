@@ -16,6 +16,7 @@ public static class Lox
 				Environment.Exit(65);
         }
 		catch (IOException ex)
+		{
             Console.WriteLine(ex);
 			throw;
 		}
