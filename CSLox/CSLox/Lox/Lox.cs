@@ -1,4 +1,6 @@
-﻿namespace CSLox.Lox;
+﻿using System.Text;
+
+namespace CSLox.Lox;
 
 public static class Lox
 {
@@ -8,8 +10,8 @@ public static class Lox
     {
 		try
 		{
-            byte[] bytes = File.ReadAllBytes(Path.GetFullPath(path));
-			Run();
+            string text = File.ReadAllText(Path.GetFullPath(path));
+			Run(text);
 
 			if (hadError)
 				Environment.Exit(65);
@@ -45,21 +47,21 @@ public static class Lox
 		}
     }
 
+    public static void Error(int line, string message)
+    {
+        Report(line, "", message);
+    }
+
     private static void Run(string source)
 	{
-		Scanner scanner = new Scanner(source);
-		List<Token> tokens = scanner.ScanTokens;
+		Scanner scanner = new(source);
+		List<Token> tokens = scanner.ScanTokens();
 
 		foreach (var token in tokens)
 		{
             Console.WriteLine(token);
 		}
     }
-
-	private static void Error(int line, string message)
-	{
-		Report(line, "", message);
-	}
 
     private static void Report(int line, string where, string message)
 	{
