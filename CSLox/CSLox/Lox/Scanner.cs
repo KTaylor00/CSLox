@@ -59,6 +59,8 @@ public class Scanner(string source)
                 break;
             case '>': AddToken(Match('=') ? GREATER_EQUAL : GREATER);
                 break;
+            case '/': // TODO
+                break;
 
             default:
                 Lox.Error(line, "Unexpected character.");
