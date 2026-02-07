@@ -59,7 +59,7 @@ public class Scanner(string source)
                 break;
             case '>': AddToken(Match('=') ? GREATER_EQUAL : GREATER);
                 break;
-            case '/': // I must do this still.
+            case '/': // TODO
                 break;
 
             default:
